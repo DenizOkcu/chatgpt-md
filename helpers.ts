@@ -87,11 +87,7 @@ class FolderCreationModal extends Modal {
 	modalPromise: Promise<boolean>;
 	resolveModalPromise: (value: boolean) => void;
 
-	constructor(
-		app: App,
-		folderName: string,
-		folderPath: string
-	) {
+	constructor(app: App, folderName: string, folderPath: string) {
 		super(app);
 		this.folderName = folderName;
 		this.folderPath = folderPath;
@@ -112,7 +108,6 @@ class FolderCreationModal extends Modal {
 		contentEl.createEl("p", {
 			text: `If you choose "Yes, Create", the plugin will automatically create a folder at: ${this.folderPath}. You can change this path in the plugin settings.`,
 		});
-
 
 		new Setting(contentEl).addButton((btn) =>
 			btn
@@ -137,7 +132,6 @@ class FolderCreationModal extends Modal {
 					this.close();
 				})
 		);
-
 	}
 
 	waitForModalValue() {
