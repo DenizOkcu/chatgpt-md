@@ -31,6 +31,10 @@ export const writeInferredTitleToEditor = async (
 	try {
 		// set title of file
 		const file = view.file;
+		if (!file) {
+			throw new Error("No file is currently open");
+		}
+
 		// replace trailing / if it exists
 		const folder = chatFolder.replace(/\/$/, "");
 
@@ -68,12 +72,12 @@ export const createFolderModal = async (
 
 	if (result) {
 		console.log("[ChatGPT MD] Creating folder");
-        await vault.createFolder(folderPath);
+		await vault.createFolder(folderPath);
 	} else {
 		console.log("[ChatGPT MD] Not creating folder");
 	}
 
-    return result;
+	return result;
 };
 
 class FolderCreationModal extends Modal {
@@ -122,7 +126,7 @@ class FolderCreationModal extends Modal {
 				})
 		);
 
-        new Setting(contentEl).addButton((btn) =>
+		new Setting(contentEl).addButton((btn) =>
 			btn
 				.setButtonText("No, I'll create it myself")
 				.setTooltip("Cancel")
